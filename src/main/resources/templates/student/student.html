@@ -42,7 +42,6 @@
                 </h4>
             </div>
             <div class="modal-body">
-
                 <form name="placeOrder" method="POST" action="/stu/updateStudent">
                     <input type="hidden" value="" id="bhId">
                     <div class="form-group">
@@ -91,105 +90,7 @@
 <script th:src="@{/static/js/lib/ie10-viewport-bug-workaround.js}"></script>
 <script>
     //3.前端提供的绑定事件myselfEvents
-    window.myselfEvents = {
-        "click .edit": function (e, value, row, index) {
-            $("#myModal").modal("show");
-            $("#stuNo").val(row.studentNo);
-            $("#stuName").val(row.studentName);
-            $("#stuPwd").val(row.stuPwd);
-            $("#stuPhone").val(row.phone);
 
-        },
-        "click .delete": function (e, value, row, index) {
-       var stuNo=row.studentNo;
-       var  isOk=confirm("您确定要删除吗？")
-            if (isOk){
-            $.ajax({
-                url:"/stu/deleteStudent/"+stuNo,
-                type:"DELETE",
-                success:function (data) {
-                    console.log(data);
-                    alert(data.msg);
-                    window.location.reload();    //渲染一下页面
-                }
-            })
-            }
-        }
-    }
-
-    function findStuFn() {
-        $("#table_stu").bootstrapTable({
-            url: "/stu/getStudentList",    //请求url路径
-            type: "GET",
-            dataType: "json",      //返回数据类型
-            pagination: true,      //是否进行分页
-            search: true,             //是否有搜索框
-            showRefresh: true,  //是否有刷新按钮
-            pageSize: 5,               //每页显示几条数据
-            pageList: [1, 2, 3, 4, 5],  //每页显示数据选择
-            columns: [
-                {
-                    field: "studentNo",
-                    title: "学号",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "studentName",
-                    title: "姓名",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "loginPwd",
-                    title: "密码",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "sex",
-                    title: "性别",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "gradeName",
-                    title: "年级",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "phone",
-                    title: "手机号码",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "bornDate",
-                    title: "出生日期",
-                    align: "center",
-                    valign: "middle",
-                    searchable: true
-                },
-                {
-                    field: "#",
-                    title: "操作",
-                    align: "center",
-                    valign: "middle",
-                    formatter: delEdit,
-                    events: myselfEvents
-                }
-            ]
-        })
-    }
-
-    findStuFn();
 
     //4.前端提供编辑按钮两个，需要加如自己的绑定事件myselfEvents
     function delEdit(value, row, index) {

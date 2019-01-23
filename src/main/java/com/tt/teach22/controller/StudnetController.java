@@ -46,6 +46,12 @@ public class StudnetController extends BaseController {
         return REDIRECT + "/stu/login";
     }
 
+    //登录的接口
+    @RequestMapping("/student")
+    public String student() {
+        return "/student/student";
+    }
+
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
     public String doLogin() {
         String xuehao = getRequest().getParameter("studentNo");
